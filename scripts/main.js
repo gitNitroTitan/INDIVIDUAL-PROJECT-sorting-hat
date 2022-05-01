@@ -34,6 +34,22 @@ const students =[
       selectedElement.innerHTML = textToRender;
     };
 
+    const createStudentForm = () => {
+      const domString = `
+      <p>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      Button with data-target
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+    </div>
+  </div>
+      `;
+      renderToDom('#addStudentContainer', domString);
+    };
+
 
  let domString='';
  
@@ -53,33 +69,7 @@ renderToDom('#welcomeContainer', domString);
    } 
 const indStudent = document.querySelector("#indStudent");   //bubbling=adding an event listener to a container
 
-// const studentsId = () =>{
-//   students.forEach((indStudent,index) => {
-//     return indStudent.id = index + 1;                       
-//   });
-//   };
-// console.log(students);
-// const sortedCard = () => {
-//   let domString = '';
-//   for (const indStudent of array) {
-//     domString += `
-//     <form class="row g-3">
-//     <div class="col-auto">
-//       <label for="studentName" class="visually-hidden">Enter First Year's Name</label>
-//       <input type="text" readonly class="form-control-plaintext" id="studentName" value="Student:">
-//     </div>
-//     <div class="col-auto">
-//       <label for="inputName" class="visually-hidden">Student's Name</label>
-//       <input type="student" class="form-control" id="inputName" placeholder="First Year Student">
-//     </div>
-//     <div class="col-auto">
-//       <button type="submit" class="btn btn-primary mb-3">Sort to House</button>
-//     </div>
-//   </form>`;
-//     }
-  
-//  renderToDom('#welcome-students',domString);
-//  }
+
 
 const cardsOnDom = (array) => {
   let domString ="";
@@ -97,6 +87,12 @@ const cardsOnDom = (array) => {
 </div>`;
 }
 }
+
+const eventListeners = () => {
+  //work on this next//
+  const formModal = new bootstrap.Modal(document.querySelector('#add-student'));
+}
+
 document.querySelector('#filterContainer').addEventListener('click', (e) => {
   // check to make sure e.target.id is not empty
   if (e.target.id) {
@@ -111,9 +107,7 @@ document.querySelector('#filterContainer').addEventListener('click', (e) => {
 
   
 
-// const form = document.querySelector('form');
-// form.addEventListener('submit', (e) => {
-//   e.preventDefault(); // this goes in EVERY form submit to prevent page reload
+
 
   const newStudentObj = {  
    
@@ -126,14 +120,15 @@ document.querySelector('#filterContainer').addEventListener('click', (e) => {
   students.push(newStudentObj);
   cardsOnDom(students);
   studentsId(newStudentObj);
-  // formModal.hide();
+  formModal.hide();
   form.reset();
 });
 
 const startApp = () => {
+  createStudentForm();
   cardsOnDom(students);
   welcomeCard();
-  // eventListeners();
+  eventListeners();
 
 }
 startApp();
