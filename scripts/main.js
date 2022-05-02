@@ -28,6 +28,8 @@ const students =[
       'Hufflepuff',
       'Slytherin'
     ]
+    const item = houseSort[Math.floor(Math.random() * houseSort.length)]; //add this function to form?
+
     //utility function
     const renderToDom = (divId, textToRender) => {
       const selectedElement = document.querySelector(divId);
@@ -35,19 +37,19 @@ const students =[
     };
 
 
- let domString='';
+ let domString=''; //empty domString
  
- const welcomeCard  = ()=> {
+ const welcomeCard  = () => {     //welcome card
  
-  domString += `
+  domString = `
       <div class="sortingCard" style="width: 18rem;">
       <h5 class="card-title">Welcome To Hogwarts</h5>
       <img src="../assets/images/sorting-hat.png" class="card-img-top" alt="Sorting Hat">
       <div class="card-body">
       <p class="card-text">Welcome, welcome, one and all! The show's about to start! I'm the Hogwarts Sorting Hat and it's time to play my part. You may call me worn and ragged... if that's all you truly see... but listen close and I will tell where you're supposed to be. Go ahead and try me on. There's nothing left to fear, I'll find right where you belong by looking between your ears!</p>
-   
+     ** <button onclick="" type="submit" class="btn btn-danger">Begin</button>   //add on click value 
     </div>
-  </div>`
+  </div>`;
 
 renderToDom('#welcomeContainer', domString);
    } 
@@ -56,13 +58,13 @@ const indStudent = document.querySelector("#indStudent");   //bubbling=adding an
 
 
 
-const sortedStudentCard = (array) => {
-  let domString ="";
+const sortedStudentCard = (array) => {    //sorted student card with expulsion button and interpolation
+  let domString ="";                      
   for (const indStudent of array) {
   domString += `
   <div class="card" text-center">
   <header><h5 class="card-title">${indStudent.name}</h5></header>
-  <img src="${indStudent.house}" class="card-img-top" alt="house image">
+  <img src="${indStudent.house}" class="card-img-top" alt="house image">    //this line will need work
   <div class="card-body">
     <p class="student-house">${indStudent.house}</p>
     </div> 
@@ -74,7 +76,7 @@ const sortedStudentCard = (array) => {
 renderToDom("#sortedStudent", domString);
 }
 
-const voldemortArmyCard = (array) => {
+const voldemortArmyCard = (array) => {       //voldemorts army card
   let evilDomString ="";
   for (const bannedStudent of array) {
     if(bannedStudent.expelled === true){
@@ -88,16 +90,16 @@ const voldemortArmyCard = (array) => {
 </div>`;
 }
 }
-renderToDom("#voldemortsArmy", domString);
+renderToDom("#voldemortsArmy", domString);    //renders card to voldy's array on the DOM
 }
-const createStudentForm = () => {
+const createStudentForm = () => {       //card to add a new student and randomly sort them
   const domString = `
   <form>  
   <div class="form-group">
     <label for="addStuName">Name</label>
     <input type="text" class="form-control" id="addStuName" placeholder="First Year's Name">
   </div>  
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button onclick="sortStudents()" type="submit" class="btn btn-danger">Submit</button>
 </form>
   `;
   renderToDom('#addStudentContainer', domString);
@@ -106,6 +108,15 @@ const createStudentForm = () => {
 // const hide = () => {
 //   document.getElementById('addStudentContainer').style.display ="none"
 // }
+
+const toggleText = () => {
+  let x = document.getElementById("addStudentContainer");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
 
 document.querySelector('#filterContainer').addEventListener('click', (e) => {
   // check to make sure e.target.id is not empty
@@ -128,8 +139,12 @@ document.querySelector('#filterContainer').addEventListener('click', (e) => {
      });
     };
   
-
-
+    const sortStudents = () => {
+      document.getElementById('addStudentContainer').style.display = "";
+    }
+      
+    
+    
 
   const newStudentObj = {  
    
@@ -150,5 +165,6 @@ const startApp = () => {
   sortedStudentCard(students);
   welcomeCard();
   // eventListeners();
+  toggleText();
 }
 startApp();
