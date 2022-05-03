@@ -1,4 +1,39 @@
 body{
+  
   background-color: black;
   color:white;
+}
+.mainContainer{
+  /* display:flex;
+  flex-flow: row wrap;
+  justify-items: center; */
+  font-family: 'Harry Potter', sans-serif;
+}
+.welcome-title{
+  font-size: 8rem;
+  text-align: center;
+  margin:30px;
+}
+.card-text{
+  font-size:2em;
+}
+.btn-primary{
+  background-color: purple;
+  border: black;
+}
+.sort-card{
+  background-color:white;
+  color: black;
+}
+.domCard { 
+background-color:white;
+color: black;
+}
+#collapseBegin{
+  width: 300px;
+  height: auto; 
+  color:black;
+}
+#voldemortsArmy{
+  justify-content: center;
 }
