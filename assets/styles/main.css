@@ -1,56 +1,56 @@
-body{
+body {
   background-color: rgb(23, 21, 21);
 }
-.container-fluid{
+.container-fluid {
   background-image: url(../images/pheonix-hogwarts.jpeg);
-  color:white;
+  color: white;
   background-size: 100% 100%;
 }
-.welcome-title{
+.welcome-title {
   font-size: 8rem;
   text-align: center;
-  margin:30px;
+  margin: 30px;
 }
-#welcomeContainer{ 
- display:flex;
- flex:wrap;
- justify-content: center;
- font-family: 'Harry Potter', sans-serif;
+#welcomeContainer {
+  display: flex;
+  flex: wrap;
+  justify-content: center;
+  font-family: "Harry Potter", sans-serif;
 }
-#filterContainer{
-  display:flex;
+#filterContainer {
+  display: flex;
   justify-content: space-around;
   margin: 4em;
-  font-family: 'Harry Potter', sans-serif;
+  font-family: "Harry Potter", sans-serif;
 }
-#addStudentContainer{
-  background-color:  transparent;
-  display:flex;
-  flex: wrap;  
+#addStudentContainer {
+  background-color: transparent;
+  display: flex;
+  flex: wrap;
   justify-content: center;
-  font-family: 'Harry Potter', sans-serif;
+  font-family: "Harry Potter", sans-serif;
 }
-#voldemortsArmy{
-  background-color:  transparent;
-  display:flex;
+#voldemortsArmy {
+  background-color: transparent;
+  display: flex;
   /* flex-flow: row wrap; */
   justify-content: center;
-  font-family: 'Harry Potter', sans-serif;
+  font-family: "Harry Potter", sans-serif;
 }
 
-.card-text{
-  font-size:2em;
+.card-text {
+  font-size: 2em;
 }
-.btn-primary{
+.btn-primary {
   background-color: purple;
   border: black;
 }
-.sort-card{
-  background-color:white;
-  color:  rgb(23, 21, 21);
+.sort-card {
+  background-color: white;
+  color: rgb(23, 21, 21);
 }
-.domCard1 { 
-  background-color:transparent;
+.domCard1 {
+  background-color: transparent;
   color: white;
   border: 2px white solid;
   border-radius: 10%;
@@ -60,34 +60,34 @@ body{
   margin: 10px;
   width: 300px;
   height: auto;
-  }
-.domCard2 { 
-background-color:transparent;
-color: white;
-border: 2px white solid;
-border-radius: 10%;
-font-size: 3rem;
-padding: 10px;
-text-align: center;
-margin: 10px;
-width: 300px;
-height: auto;
 }
-#collapseBegin{
+.domCard2 {
+  background-color: transparent;
+  color: white;
+  border: 2px white solid;
+  border-radius: 10%;
+  font-size: 3rem;
+  padding: 10px;
+  text-align: center;
+  margin: 10px;
   width: 300px;
-  height: auto; 
-  color:black;
+  height: auto;
 }
-#voldemortsArmy{
+#collapseBegin {
+  width: 300px;
+  height: auto;
+  color: black;
+}
+#voldemortsArmy {
   justify-content: center;
 }
-.card-img-top1{
+.card-img-top1 {
   height: 250px;
   width: 250px;
-  padding:0.5em;
+  padding: 0.5em;
 }
-.card-img-top2{
+.card-img-top2 {
   height: 250px;
-  width:250px;
-  padding:0.5em;
+  width: 250px;
+  padding: 0.5em;
 }
