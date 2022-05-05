@@ -26,7 +26,8 @@ body{
 #addStudentContainer{
   background-color:  transparent;
   display:flex;
-  flex: wrap;  justify-content: center;
+  flex: wrap;  
+  justify-content: center;
   font-family: 'Harry Potter', sans-serif;
 }
 #voldemortsArmy{
@@ -81,12 +82,12 @@ height: auto;
   justify-content: center;
 }
 .card-img-top1{
-  height: auto;
-  width: 200px;
+  height: 250px;
+  width: 250px;
   padding:0.5em;
 }
 .card-img-top2{
-  height: auto;
-  width:200px;
+  height: 250px;
+  width:250px;
   padding:0.5em;
 }

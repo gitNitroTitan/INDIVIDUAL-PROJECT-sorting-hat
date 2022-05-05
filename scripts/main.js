@@ -3,26 +3,31 @@ const students =[
  { id: 1,
   name: 'Harry Potter',
   house: 'Gryffendor',
+  crest: 'https://p.kindpng.com/picc/s/474-4746582_harry-potter-gryffindor-baby-bib-cotton-velcro-fastener.png',
   expelled : false
   },
  { id: 2,
    name: 'Newt Scammander',
    house: 'Hufflepuff',
+   crest: 'https://m.media-amazon.com/images/I/71SHyMkX6gL._AC_SL1200_.jpg',
    expelled : false
   },
  { id: 3,
    name: 'Luna Lovegood',
    house: 'Ravenclaw',
+   crest: 'https://www.seekpng.com/png/detail/184-1840811_ravenclaw-crest-harry-potter-harry-potter-ravenclaw-house.png',
    expelled : false
   },
  { id: 4,
    name: 'Draco Malfoy',
    house: 'Slytherin',
+   crest: 'https://p.kindpng.com/picc/s/154-1549411_slytherin-crest-black-and-white-hd-png-download.png',
    expelled : false
   },
   { id: 5,
     name: 'Tom Riddle',
     house: 'Slytherin',
+    crest: 'https://p.kindpng.com/picc/s/154-1549411_slytherin-crest-black-and-white-hd-png-download.png',
     expelled : true
    } ]
     //stores new students
@@ -30,20 +35,19 @@ const students =[
    //will house expelled student array
    const voldArmy = [];
         //houses array    
-    const houseSort =[{
-      house: 'Gryffendor',
-      houseImage: './images.gryffendor.jpg'
-
-    },
-    { house:'Ravenclaw',
-       houseImage: './images.ravenclaw.jpg'
-    },
-    { house:'Hufflepuff',
-      houseImage: './images.hufflepuff.jpg'
-    },
-    { house: 'Slytherin',
-      houseImage: './images.slytherin.jpg'
-    } ]
+    // const houseSort =[{
+    //   house: 'Gryffendor',
+    // crest: "./assets/images/hogwarts-logo.png",
+    // },
+    // { house:'Ravenclaw',
+    //    houseImage: './images.ravenclaw.jpg',
+    // },
+    // { house:'Hufflepuff',
+    //   houseImage: './images.hufflepuff.jpg',
+    // },
+    // { house: 'Slytherin',
+    //   houseImage: './images.slytherin.jpg',
+    // } ]
     // const item = houseSort[Math.floor(Math.random() * houseSort.length)]; //add this function to form?
       //utility function
     const renderToDom = (divId, textToRender) => {
@@ -122,11 +126,14 @@ const studentsId = () =>{
       <hr>
       <p class="student-house">${indStudent.house}</p>
       <hr>
-      <img class="card-img-top1" src="./assets/images/hogwarts-logo.png" class="card-img-top" alt="#">
+      </div>
+      <div>
+      <p><img src="${indStudent.crest}" class="card-img-top1" alt="crest image"></p>
         </div> 
         <div>
         <button class="btn btn-danger" id="delete--${indStudent.id}">Expel</button>
       </div>
+     
     </div>`;
       // }
    renderToDom('#addStudentContainer',domString);
@@ -156,7 +163,7 @@ const show = () => {
   document.getElementById('addStudentContainer').style.display ="";
 }
 
-const form =() => {
+const formInput =() => {
   let domString = `      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBegin" aria-expanded="false" aria-controls="collapseBegin">
   Begin
   </button>
@@ -165,10 +172,11 @@ const form =() => {
 <div class="collapse" id="collapseBegin">
     <div class="card input-body">
     <div class="col-auto">
+    <form>
     <label for="inputName" class="visually-hidden">inputName</label>
     <input type="text" class="form-control" id="inputName" placeholder=" Enter First Year's Name to Be Sorted!">
     <div class="col-auto">
-    <button type="submit" onclick="sortStudents()" class="btn btn-primary mb-3">Sort to House?</button>
+    <button type="submit" class="btn btn-primary mb-3">Sort to House?</button>
       </div>
     </div>
   </div>
@@ -178,15 +186,8 @@ renderToDom('#addStudentContainer', domString);
 }
 
 //Sort form code
-//  const form = document.querySelector('form');
-//   form.addEventListener('submit', (e) => {
-//     e.preventDefault(); // this goes in EVERY form submit to prevent page reload
-//  const newStudentObj = {  
-//   name: document.querySelector('#name').value,
-//   imageUrl: document.querySelector('#imageUrl').value,
 
-//  }
-
+  
 
   const eventListeners = () => {
   // const sortedFunction = () =>{
@@ -233,21 +234,30 @@ renderToDom('#addStudentContainer', domString);
       }
     }
   });
+  
+  const form = document.querySelector('form');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault(); 
 
+ const newStudentObj = {  
+  name: document.querySelector('#name').value,
+  }
+
+ cardsOnDom(students);
+ students.push(newStudentObj);
+ studentsId(newStudentObj);
+ form.reset();
+});
  hide();
  show();
  
 
-//  cardsOnDom(students);
-//  students.push(newStudentObj);
-//  form.reset();
-// });
+
 
 const startApp = () => {
   welcomeCard();
   filterButtons();
   cardsOnDom(students);
-  // findButtons();
   // sortStudents();
   // voldyOnDom();
   studentsId(students);
