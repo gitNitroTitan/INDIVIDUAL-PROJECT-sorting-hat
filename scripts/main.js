@@ -6,14 +6,14 @@ const students = [
     house: "Gryffendor",
     crest:
       "https://p.kindpng.com/picc/s/474-4746582_harry-potter-gryffindor-baby-bib-cotton-velcro-fastener.png",
-    expelled: false,
+    // expelled: false,
   },
   {
     id: 2,
     name: "Newt Scammander",
     house: "Hufflepuff",
     crest: "https://m.media-amazon.com/images/I/71SHyMkX6gL._AC_SL1200_.jpg",
-    expelled: false,
+    // expelled: false,
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const students = [
     house: "Ravenclaw",
     crest:
       "https://www.seekpng.com/png/detail/184-1840811_ravenclaw-crest-harry-potter-harry-potter-ravenclaw-house.png",
-    expelled: false,
+    // expelled: false,
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const students = [
     house: "Slytherin",
     crest:
       "https://p.kindpng.com/picc/s/154-1549411_slytherin-crest-black-and-white-hd-png-download.png",
-    expelled: false,
+    // expelled: false,
   },
   {
     id: 5,
@@ -37,27 +37,20 @@ const students = [
     house: "Slytherin",
     crest:
       "https://p.kindpng.com/picc/s/154-1549411_slytherin-crest-black-and-white-hd-png-download.png",
-    expelled: true,
+    // expelled: true,
   },
 ];
-//stores new students
-const newStudents = [];
+const houses = ["gryffindor", "hufflepuff", "ravenclaw", "slytherin"];
+const crest = [
+  "https://p.kindpng.com/picc/s/474-4746582_harry-potter-gryffindor-baby-bib-cotton-velcro-fastener.png",
+  "https://m.media-amazon.com/images/I/71SHyMkX6gL._AC_SL1200_.jpg",
+  "https://www.seekpng.com/png/detail/184-1840811_ravenclaw-crest-harry-potter-harry-potter-ravenclaw-house.png",
+  "https://p.kindpng.com/picc/s/154-1549411_slytherin-crest-black-and-white-hd-png-download.png",
+];
+
 //will house expelled student array
 const voldArmy = [];
-//houses array
-// const houseSort =[{
-//   house: 'Gryffendor',
-// crest: "./assets/images/hogwarts-logo.png",
-// },
-// { house:'Ravenclaw',
-//    houseImage: './images.ravenclaw.jpg',
-// },
-// { house:'Hufflepuff',
-//   houseImage: './images.hufflepuff.jpg',
-// },
-// { house: 'Slytherin',
-//   houseImage: './images.slytherin.jpg',
-// } ]
+
 // const item = houseSort[Math.floor(Math.random() * houseSort.length)]; //add this function to form?
 //utility function
 const renderToDom = (divId, textToRender) => {
@@ -67,7 +60,7 @@ const renderToDom = (divId, textToRender) => {
 
 //empty domString
 let domString = "";
-let domStringExpelled = "";
+let domString2 = "";
 
 //welcome card
 const welcomeCard = () => {
@@ -77,29 +70,11 @@ const welcomeCard = () => {
       <div class="welcome-body">
       <p class="card-text">Welcome, welcome, one and all! The show's about to start! I'm the Hogwarts Sorting Hat and it's time to play my part. You may call me worn and ragged... if that's all you truly see... but listen close and I will tell where you're supposed to be. Go ahead and try me on. There's nothing left to fear, I'll find right where you belong by looking between your ears!</p>
       <p>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBegin" aria-expanded="false" aria-controls="collapseBegin">
-        Begin
-        </button>
-      </p>
-      <form>
-      <div class="collapse" id="collapseBegin">
-          <div class="card input-body">
-          <div class="col-auto">
-          <label for="inputName" class="visually-hidden">inputName</label>
-          <input type="text" class="form-control" id="inputName" placeholder=" Enter First Year's Name to Be Sorted!">
-          <div class="col-auto">
-          <button type="submit" onclick="sortStudents()" class="btn btn-primary mb-3">Sort to House?</button>
-            </div>
-          </div>
-        </div>
-        </div>
-      </form>
     </div>
   </div>`;
 
   renderToDom("#welcomeContainer", domString);
 };
-const indStudent = document.querySelector("#indStudent");
 const filterButtons = () => {
   domString = `
   <div class="d-flex flex-wrap justify-content-between my-3">
@@ -108,7 +83,6 @@ const filterButtons = () => {
     <button id="ravenclaw-btn" class="btn btn-primary" type="button">Ravenclaw</button>
     <button id="slytherin-btn" class="btn btn-primary" type="button">Slytherin</button>
     <button id="clear-btn" class="btn btn-primary" type="button">All</button>
-    <button id="voldy-btn" class="btn btn-primary" type="button">Voldys Crew</button>
   </div>
   `;
   renderToDom("#filterContainer", domString);
@@ -119,11 +93,10 @@ const studentsId = () => {
     return (indStudent.id = index + 1);
   });
 };
-console.log(students);
 
 const cardsOnDom = (array) => {
   let domString = "";
-  // if(indStudent.delete === false){
+
   for (const indStudent of array) {
     domString += `
       <div class="domCard1" text-center">
@@ -134,22 +107,22 @@ const cardsOnDom = (array) => {
       <hr>
       <p class="student-house">${indStudent.house}</p>
       <hr>
+     
       </div>
+      
       <div>
       <p><img src="${indStudent.crest}" class="card-img-top1" alt="crest image"></p>
         </div> 
-        <div>
         <button class="btn btn-danger" id="delete--${indStudent.id}">Expel</button>
-      </div>
-     
     </div>`;
-    // }
-    renderToDom("#addStudentContainer", domString);
   }
-  const voldyOnDom = (array) => {
-    let domStringExpelled = "";
-    for (const exStudent of array) {
-      evilDomString += `<div class="domCard2" text-center">
+  renderToDom("#addStudentContainer", domString);
+};
+
+const voldyOnDom = (array) => {
+  let domString2 = "";
+  for (const exStudent of array) {
+    domString2 += `<div class="domCard2" text-center">
         <header><h2 class="card-title">Student</h2></header>
         <hr>
         <div class="card-body">
@@ -158,45 +131,33 @@ const cardsOnDom = (array) => {
         <img class="card-img-top2" src="./assets/images/death-eater-mask.jpg" alt="Evil Has No Undoing...">
           </div> 
       </div>`;
-    }
-  };
-  renderToDom("#voldemortsArmy", domStringExpelled);
-};
+  }
 
-const hide = () => {
-  document.getElementById("addStudentContainer").style.display = "none";
-};
-const show = () => {
-  document.getElementById("addStudentContainer").style.display = "";
+  renderToDom("#voldemortsArmy", domString2);
 };
 
 const formInput = () => {
-  let domString = `      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBegin" aria-expanded="false" aria-controls="collapseBegin">
-  Begin
-  </button>
-</p>
-<form>
-<div class="collapse" id="collapseBegin">
-    <div class="card input-body">
-    <div class="col-auto">
-    <form>
-    <label for="inputName" class="visually-hidden">inputName</label>
-    <input type="text" class="form-control" id="inputName" placeholder=" Enter First Year's Name to Be Sorted!">
-    <div class="col-auto">
-    <button type="submit" class="btn btn-primary mb-3">Sort to House?</button>
-      </div>
-    </div>
-  </div>
-  </div>
-</form>`;
-  renderToDom("#addStudentContainer", domString);
+  let domString = `<form class="row g-3">
+  <div class="col-auto">
+  <label for="staticEmail2" class="visually-hidden">Email</label>
+  <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+</div>
+<div class="col-auto">
+  <label for="fullName" class="visually-hidden">Full Name: </label>
+  <input type="name" class="form-control" id="fullName" placeholder="Full Name">
+</div>
+<div class="col-auto">
+  <button type="submit" class="btn btn-primary mb-3">Sort to House</button>
+</div>
+</form>
+`;
+  renderToDom("#formContainer", domString);
 };
 
-//Sort form code
-
+//event listener for filter buttons in a function
 const eventListeners = () => {
-  // const sortedFunction = () =>{
   document.querySelector("#filterContainer").addEventListener("click", (e) => {
+    console.log(e.target.id);
     if (e.target.id === "clear-btn") {
       cardsOnDom(students);
     } else if (e.target.id === "gryffendor-btn") {
@@ -215,55 +176,56 @@ const eventListeners = () => {
       cardsOnDom(
         students.filter((firstYear) => firstYear.house === "Slytherin")
       );
-    } else if (e.target.id === "voldy-btn") {
-      cardsOnDom(
-        students.filter((firstYear) => firstYear.house === "Slytherin")
-      );
     }
   });
 };
 
-document
-  .querySelector("#addStudentContainer")
-  .addEventListener("click", (e) => {
-    if (e.target.id) {
-      const [, id] = e.target.id.split("--");
-      console.log(e.target.id);
-      //find the index of the object in the array
+const expelToVoldy = () => {
+  document
+    .querySelector("#addStudentContainer")
+    .addEventListener("click", (e) => {
+      if (e.target.id) {
+        const [, id] = e.target.id.split("--");
+        // console.log(e.target.id);
 
-      const index = students.findIndex((taco) => taco.id === Number(id));
-      if (e.target.id.includes("delete")) {
-        //checks to see if delete id matches before using splice method
-        voldArmy.push(students.splice(index, 1));
-        cardsOnDom(students);
+        const index = students.findIndex((taco) => taco.id === Number(id));
+        if (e.target.id.includes("delete")) {
+          const expelledStudent = students.splice(index, 1);
+          voldArmy.push(...expelledStudent);
+          voldyOnDom(voldArmy);
+          cardsOnDom(students);
+        }
       }
-    }
+    });
+};
+
+const newStudent = () => {
+  document.querySelector("#form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const random = Math.floor(Math.random() * houses.length);
+    const newStudentObj = {
+      id: students.length + 1,
+      name: document.querySelector("#name").value,
+      house: houses[random],
+      crest: crest[random],
+    };
+    students.push(document.getElementById("form"));
+    cardsOnDom(students);
+    studentsId(newStudentObj);
+
+    // newStudent();
+    // formInput.reset();
+    // renderToDom("#formContainer", domString);
   });
-
-const form = document.querySelector("form");
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const newStudentObj = {
-    name: document.querySelector("#name").value,
-  };
-
-  cardsOnDom(students);
-  students.push(newStudentObj);
-  studentsId(newStudentObj);
-  form.reset();
-});
-hide();
-show();
+};
 
 const startApp = () => {
   welcomeCard();
   filterButtons();
   cardsOnDom(students);
-  // sortStudents();
-  // voldyOnDom();
   studentsId(students);
   eventListeners();
-  // form();
+  expelToVoldy();
+  formInput();
 };
 startApp();
