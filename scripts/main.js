@@ -50,7 +50,7 @@ const crest = [
 
 //will house expelled student array
 const voldArmy = [];
-
+const newbies = [];
 // const item = houseSort[Math.floor(Math.random() * houseSort.length)]; //add this function to form?
 //utility function
 const renderToDom = (divId, textToRender) => {
@@ -138,10 +138,6 @@ const voldyOnDom = (array) => {
 
 const formInput = () => {
   let domString = `<form class="row g-3">
-  <div class="col-auto">
-  <label for="staticEmail2" class="visually-hidden">Email</label>
-  <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
-</div>
 <div class="col-auto">
   <label for="fullName" class="visually-hidden">Full Name: </label>
   <input type="name" class="form-control" id="fullName" placeholder="Full Name">
@@ -200,22 +196,18 @@ const expelToVoldy = () => {
 };
 
 const newStudent = () => {
-  document.querySelector("#form").addEventListener("submit", (e) => {
+  document.querySelector("form").addEventListener("submit", (e) => {
     e.preventDefault();
     const random = Math.floor(Math.random() * houses.length);
     const newStudentObj = {
       id: students.length + 1,
-      name: document.querySelector("#name").value,
+      name: document.querySelector("#fullName").value,
       house: houses[random],
       crest: crest[random],
     };
-    students.push(document.getElementById("form"));
+    students.push(newStudentObj);
     cardsOnDom(students);
-    studentsId(newStudentObj);
-
-    // newStudent();
-    // formInput.reset();
-    // renderToDom("#formContainer", domString);
+    formInput.reset();
   });
 };
 
@@ -227,5 +219,6 @@ const startApp = () => {
   eventListeners();
   expelToVoldy();
   formInput();
+  newStudent();
 };
 startApp();
